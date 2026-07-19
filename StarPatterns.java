@@ -194,6 +194,150 @@ Inverted and Rotated Half Pyramid
         }
     }
 
+    /* 
+    ...*...
+    ..***..
+    .*****.
+    *******
+
+    ...**...
+    ..****..
+    .******.
+    ********
+     */
+    public static void diamondPattern(int rows) {
+        int blankCount = rows / 2;
+        if (rows % 2 == 0) {
+            blankCount--;
+        }
+        int temp = blankCount;
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= rows; j++) {
+                if (j > temp && j <= (rows - temp)) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            temp--;
+            if (temp < 0) {
+                break;
+            }
+            System.out.println();
+        }
+    }
+
+    /*  
+    Number Pyramid Pattern
+    ....1....
+    ...2.2...
+    ..3.3.3..
+    .4.4.4.4.
+    5.5.5.5.5
+
+    ...1...
+    ..2.2..
+    .3.3.3.     
+    4.4.4.4
+     */
+    // public static void numberPyramidPattern(int rows) {
+    //     int columns = rows + rows - 1;
+    //     int blankCount = rows - 1;
+    //     int temp = blankCount;
+    //     for (int i = 1; i <= rows; i++) {
+    //         boolean flag = true;
+    //         for (int j = 1; j <= columns; j++) {
+    //             if (temp > j && j <= (columns - temp)) {
+    //                 if (flag) {
+    //                     System.out.print(i);
+    //                 } else {
+    //                     System.out.print(" ");
+    //                 }
+    //                 flag = !flag;
+    //             } else {
+    //                 System.out.print(" ");
+    //             }
+    //         }
+    //         temp--;
+    //         if (temp < 0) {
+    //             break;
+    //         }
+    //         System.out.println();
+    //     }
+    // }
+    public static void numberPyramidPattern(int rows) {
+        int columns = rows + rows - 1;
+        int blankCount = rows - 1;
+        int temp = blankCount;
+
+        for (int i = 1; i <= rows; i++) {
+
+            boolean flag = true;
+
+            for (int j = 1; j <= columns; j++) {
+
+                if (j > temp && j <= (columns - temp)) {
+
+                    if (flag) {
+                        System.out.print(i);
+                    } else {
+                        System.out.print(" ");
+                    }
+
+                    flag = !flag;
+
+                } else {
+                    System.out.print(" ");
+                }
+            }
+
+            temp--;
+            System.out.println();
+        }
+    }
+
+    /* 
+    Palindromic Pattern
+        1
+       212
+      32123       
+     4321234
+    543212345
+
+       1
+      212
+     32123
+    4321234
+     */
+    public static void palindromicPattern(int rows) {
+        boolean decrement = true;
+        int blankCount = rows - 1;
+        int columns = rows + blankCount;
+        int temp = blankCount;
+        for (int i = 1; i <= rows; i++) {
+            int count = i;
+            for (int j = 1; j <= columns; j++) {
+                if (j > temp && j <= (columns - temp)) {
+                    if (decrement) {
+                        System.out.print(count);
+                        count--;
+                        if (count == 0) {
+                            decrement = false;
+                            count = 1;
+                        }
+                    } else {
+                        System.out.print(count);
+                        count++;
+                    }
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            temp--;
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         // hollowRectangle();
 
@@ -205,6 +349,9 @@ Inverted and Rotated Half Pyramid
         // floydTrianglePattern(rows);
         // zeroOneTrianglePattern(rows);
         // butterflyPattern(rows);
-        solidRhombusPattern(rows);
+        // solidRhombusPattern(rows);
+        // diamondPattern(rows);
+        // numberPyramidPattern(rows);
+        palindromicPattern(rows);
     }
 }
